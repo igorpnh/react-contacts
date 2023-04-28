@@ -86,7 +86,10 @@ export default function EditContactModal(props) {
             <FormControl>
               <FormLabel>Nome</FormLabel>
               <Input
-                onChange={(e) => setName(e.target.value)}
+                onChange={(e) => {
+                  if (!e.target.value) setName(data.name)
+                  setName(e.target.value)
+                }}
                 variant="flushed"
                 type="text"
                 focusBorderColor="green.300"
@@ -96,7 +99,10 @@ export default function EditContactModal(props) {
             <FormControl>
               <FormLabel>Apelido</FormLabel>
               <Input
-                onChange={(e) => setNickname(e.target.value)}
+                onChange={(e) => {
+                  if (!e.target.value) setNickname(data.nickname)
+                  setNickname(e.target.value)
+                }}
                 variant="flushed"
                 type="text"
                 focusBorderColor="green.300"
@@ -107,6 +113,7 @@ export default function EditContactModal(props) {
               <FormLabel>Data de Nascimento</FormLabel>
               <Input
                 onChange={(e) => {
+                  if(!e.target.value) setBirthday(data.birthday)
                   const birthday = formatDate(e.target.value);
                   setBirthday(birthday);
                 }}
@@ -121,6 +128,7 @@ export default function EditContactModal(props) {
               <FormLabel>Celular</FormLabel>
               <Input
                 onChange={(e) => {
+                  if(!e.target.value) setPhone(data.birthday)
                   const phone = formatPhone(e.target.value);
                   setPhone(phone);
                 }}
