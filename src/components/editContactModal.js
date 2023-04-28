@@ -57,6 +57,16 @@ export default function EditContactModal(props) {
   }
 
   const handleUpdateContact = async () => {
+    if(!name || !nickname || !birthday || !phone) {
+      toast({
+        title: "Preencha todos os campos para atualizar!",
+        status: "error",
+        position: "top-right",
+        duration: 2000,
+        isClosable: true,
+      });
+      return
+    };
     await updateDoc(doc(db, "contacts", data.id), {
       name,
       nickname,
@@ -71,10 +81,12 @@ export default function EditContactModal(props) {
       duration: 2000,
       isClosable: true,
     });
-
+    setName();
+    setNickname();
     onClose();
   };
 
+  console.log(data)
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
       <ModalOverlay />
@@ -87,8 +99,8 @@ export default function EditContactModal(props) {
               <FormLabel>Nome</FormLabel>
               <Input
                 onChange={(e) => {
-                  if (!e.target.value) setName(data.name)
-                  setName(e.target.value)
+                  if(!e.target.value) setName(data.name)
+                  setName(e.target.value);
                 }}
                 variant="flushed"
                 type="text"
@@ -100,8 +112,8 @@ export default function EditContactModal(props) {
               <FormLabel>Apelido</FormLabel>
               <Input
                 onChange={(e) => {
-                  if (!e.target.value) setNickname(data.nickname)
-                  setNickname(e.target.value)
+                  if (!e.target.value) setNickname(data.nickname);
+                  setNickname(e.target.value);
                 }}
                 variant="flushed"
                 type="text"
@@ -113,7 +125,7 @@ export default function EditContactModal(props) {
               <FormLabel>Data de Nascimento</FormLabel>
               <Input
                 onChange={(e) => {
-                  if(!e.target.value) setBirthday(data.birthday)
+                  if (!e.target.value) setBirthday(data.birthday);
                   const birthday = formatDate(e.target.value);
                   setBirthday(birthday);
                 }}
@@ -128,7 +140,7 @@ export default function EditContactModal(props) {
               <FormLabel>Celular</FormLabel>
               <Input
                 onChange={(e) => {
-                  if(!e.target.value) setPhone(data.birthday)
+                  if (!e.target.value) setPhone(data.birthday);
                   const phone = formatPhone(e.target.value);
                   setPhone(phone);
                 }}
