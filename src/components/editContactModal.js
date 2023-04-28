@@ -84,7 +84,6 @@ export default function EditContactModal(props) {
     onClose();
   };
 
-  console.log(data)
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
       <ModalOverlay />
