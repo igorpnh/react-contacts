@@ -31,7 +31,7 @@ export default function Cards(data) {
     <Card
       boxShadow="dark-lg"
       bg={colorMode === "light" ? "gray.200" : "gray.700"}
-      w="18rem"
+
     >
       <CardHeader textAlign={"center"}>
         <Flex justify="space-between">
