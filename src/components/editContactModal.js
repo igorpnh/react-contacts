@@ -81,8 +81,6 @@ export default function EditContactModal(props) {
       duration: 2000,
       isClosable: true,
     });
-    setName();
-    setNickname();
     onClose();
   };
 
